@@ -31,16 +31,16 @@ def longest_distance_between_2_atoms(file):
     valid_atoms = [] #we'll store here the coordinates of each valid atom: x, y, z
     
     for line in file:
-        if line.startswith("ATOM"):
-            line_parts = line.split()
+        first_word = line[0:4]
+        if first_word == "ATOM":
+
             # the line is now split. the first element is "ATOM", 
             # the fifth is A or B(we want only A), 
             # the seventh, eight and nineth elements are the x y and z.
-            if line_parts[4] == "A":
-                x = float(line_parts[6])
-                y = float(line_parts[7])
-                z = float(line_parts[8])
-                
+            if line[21] == "A":
+                x = float(line[30:38])
+                y = float(line[38:46])
+                z = float(line[46:54])          
                 valid_atoms.append((x, y, z))
     
     max_distance = 0.0
@@ -65,6 +65,7 @@ if __name__ == "__main__":
     file_path = ask_user_for_structure()
     file = open_file(file_path)
     longest_distance = longest_distance_between_2_atoms(file)
-    print(f"The longest distance between 2 atoms is: {longest_distance}")
+    with open ("results/longest_distance.txt", "w") as output_file:
+        output_file.write(f"The longest distance between 2 atoms for {file_path} is: {longest_distance}\n")
     
     file.close()

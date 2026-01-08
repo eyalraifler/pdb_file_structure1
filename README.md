@@ -1,0 +1,2 @@
+This repo contains one file(main.py) that presents the user with 3 options to choose from(files 1,2 and 3).
+for the chosen file, the program will read the PDB file from data folder, calculate the longest distance between all the atoms in A and paste the result in file "longest_distance.txt" under results folder.
